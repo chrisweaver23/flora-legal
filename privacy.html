@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flora — Privacy Policy</title>
+<meta name="description" content="Flora gut-health tracker privacy policy. Your data lives on your phone.">
+<style>
+  :root { --ink:#17251D; --ink2:#3C4A42; --ink3:#7A867F; --green:#0A7A46; --bg:#F7FAF7; --card:#FFFFFF; --line:#E4EAE5; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width:720px; margin:0 auto; padding:48px 22px 80px; }
+  .brand { display:flex; align-items:center; gap:10px; margin-bottom:34px; }
+  .leaf { width:34px; height:34px; border-radius:17px; background:var(--green); display:flex; align-items:center; justify-content:center; color:#fff; font-size:17px; }
+  .brand b { font-size:19px; letter-spacing:.2px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:34px 30px; }
+  h1 { font-family:Georgia, "Times New Roman", serif; font-size:32px; line-height:1.2; margin:0 0 6px; }
+  .updated { color:var(--ink3); font-size:13.5px; margin-bottom:22px; }
+  h2 { font-size:19px; margin:30px 0 8px; }
+  p, li { color:var(--ink2); }
+  li { margin-bottom:8px; }
+  strong { color:var(--ink); }
+  .foot { text-align:center; color:var(--ink3); font-size:13px; margin-top:28px; }
+  a { color:var(--green); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="leaf">🌿</div><b>Flora</b></div>
+  <div class="card">
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated: July 8, 2026</div>
+
+    <p>Flora ("the app") is a gut-health food tracker. This policy explains what data Flora handles and where it goes. The short version: <strong>your data lives on your phone. There is no Flora account and no Flora server that stores your data.</strong></p>
+
+    <h2>What Flora stores, and where</h2>
+    <p>Everything you enter in Flora — your profile (age, height, weight, sex, activity level, goals, allergies), your logged meals, scores, sensitivity reports, learned triggers, saved recipes, grocery list, and water tracking — is stored <strong>locally on your device</strong>. Deleting the app deletes this data. "Reset app &amp; onboarding" inside the app also erases it. You can export a copy of everything at any time from You → Account → Privacy &amp; data.</p>
+    <p>Flora has no user accounts, no cloud sync, and no analytics SDKs.</p>
+
+    <h2>What leaves your device</h2>
+    <p>Some features send limited data to third-party services to work:</p>
+    <ul>
+      <li><strong>AI analysis (Anthropic Claude).</strong> When you use photo scanning, spoken/typed meal analysis, Ask Flora, or AI-generated recipes, the relevant content (a meal photo, your meal description, your question, and the personal context needed to answer — such as your scores, goals, macros remaining, and trigger list) is sent to Anthropic's API through Flora's proxy server to generate the response. Flora's proxy does not store this content; Anthropic processes it under its own API data policies.</li>
+      <li><strong>Barcode and product lookups (OpenFoodFacts).</strong> Scanned barcodes and product-name searches are sent to the free OpenFoodFacts database to fetch label data and product images. No personal data is included.</li>
+      <li><strong>Nearby restaurants (OpenStreetMap Overpass).</strong> When you grant location permission, your approximate coordinates are sent to OpenStreetMap's public Overpass API to find restaurants near you. Location is used only in the moment, never stored off your device, and you can use the app fully without granting it.</li>
+      <li><strong>Photography (Pexels).</strong> Recipe and article images are fetched from the Pexels photo API using food keywords only — no personal data.</li>
+      <li><strong>Brand logos (Clearbit).</strong> Restaurant logos are fetched by restaurant domain — no personal data.</li>
+    </ul>
+
+    <h2>Permissions</h2>
+    <ul>
+      <li><strong>Camera</strong> — photographing meals and scanning barcodes. Optional.</li>
+      <li><strong>Photo library</strong> — choosing an existing meal photo. Optional.</li>
+      <li><strong>Microphone</strong> — dictating meals via the keyboard's speech input. Optional.</li>
+      <li><strong>Location (while using)</strong> — finding restaurants near you. Optional.</li>
+      <li><strong>Notifications</strong> — a single optional daily logging reminder, scheduled locally on your device.</li>
+    </ul>
+    <p>Every permission is optional; the relevant feature simply stays off without it.</p>
+
+    <h2>Health disclaimer</h2>
+    <p>Flora offers general wellness information, not medical advice, diagnosis, or treatment. Gut scores are informational estimates. Consult a qualified professional about medical concerns.</p>
+
+    <h2>Children</h2>
+    <p>Flora is not directed at children under 13 and does not knowingly collect data from them.</p>
+
+    <h2>Changes</h2>
+    <p>We'll update this document when the policy changes and note the date above.</p>
+
+    <h2>Contact</h2>
+    <p>Questions: <a href="mailto:cw23business@gmail.com">cw23business@gmail.com</a></p>
+  </div>
+  <div class="foot">Flora · <a href="terms.html">Terms of Service</a></div>
+</div>
+</body>
+</html>
