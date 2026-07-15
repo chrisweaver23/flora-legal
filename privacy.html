@@ -29,13 +29,13 @@
   <div class="brand"><div class="leaf">🌿</div><b>Flora</b></div>
   <div class="card">
     <h1>Privacy Policy</h1>
-    <div class="updated">Last updated: July 8, 2026</div>
+    <div class="updated">Last updated: July 15, 2026</div>
 
-    <p>Flora ("the app") is a gut-health food tracker. This policy explains what data Flora handles and where it goes. The short version: <strong>your data lives on your phone. There is no Flora account and no Flora server that stores your data.</strong></p>
+    <p>Flora ("the app") is a gut-health food tracker. This policy explains what data Flora handles and where it goes. The short version: <strong>your data lives on your phone. There is no Flora account, and your meals and health data are never uploaded to or stored on a Flora server.</strong></p>
 
     <h2>What Flora stores, and where</h2>
     <p>Everything you enter in Flora — your profile (age, height, weight, sex, activity level, goals, allergies), your logged meals, scores, sensitivity reports, learned triggers, saved recipes, grocery list, and water tracking — is stored <strong>locally on your device</strong>. Deleting the app deletes this data. "Reset app &amp; onboarding" inside the app also erases it. You can export a copy of everything at any time from You → Account → Privacy &amp; data.</p>
-    <p>Flora has no user accounts, no cloud sync, and no analytics SDKs.</p>
+    <p>Flora has no user accounts and no cloud sync. There are no third-party analytics or advertising SDKs. The App Store version of Flora sends a small stream of <strong>anonymous usage signals</strong> to Flora's own server (described below) — never to an analytics company.</p>
 
     <h2>What leaves your device</h2>
     <p>Some features send limited data to third-party services to work:</p>
@@ -45,15 +45,17 @@
       <li><strong>Nearby restaurants (OpenStreetMap Overpass).</strong> When you grant location permission, your approximate coordinates are sent to OpenStreetMap's public Overpass API to find restaurants near you. Location is used only in the moment, never stored off your device, and you can use the app fully without granting it.</li>
       <li><strong>Photography (Pexels).</strong> Recipe and article images are fetched from the Pexels photo API using food keywords only — no personal data.</li>
       <li><strong>Brand logos (Clearbit).</strong> Restaurant logos are fetched by restaurant domain — no personal data.</li>
+      <li><strong>Anonymous usage signals (Flora's own server).</strong> So we can tell whether onboarding works and catch crashes, the App Store version of Flora sends Flora's own server small anonymous events: which onboarding step was viewed, a coarse band of the starting score shown at the reveal (like "60s" — never the exact number), that a purchase started, succeeded, was cancelled or failed (with Apple's error text), and an error's type and code location. Each event carries a random install id minted on your device — it is not your name, email, or a device identifier, and "Reset app &amp; onboarding" mints a new one. These events never include your health answers, symptoms, allergies, meals, exact scores, or profile, and they go only to Flora's own server — no third-party analytics service ever receives them.</li>
     </ul>
 
     <h2>Permissions</h2>
     <ul>
       <li><strong>Camera</strong> — photographing meals and scanning barcodes. Optional.</li>
       <li><strong>Photo library</strong> — choosing an existing meal photo. Optional.</li>
-      <li><strong>Microphone</strong> — dictating meals via the keyboard's speech input. Optional.</li>
+      <li><strong>Microphone</strong> — the optional "Speak it" meal logging listens while you describe your meal. Optional.</li>
+      <li><strong>Speech recognition</strong> — what you say is transcribed on your device into text you review and edit before anything is scored; nothing you say is sent to a Flora server. If on-device recognition isn't available, the feature falls back to the keyboard's own dictation. Optional.</li>
       <li><strong>Location (while using)</strong> — finding restaurants near you. Optional.</li>
-      <li><strong>Notifications</strong> — a single optional daily logging reminder, scheduled locally on your device.</li>
+      <li><strong>Notifications</strong> — up to five kinds of optional local reminders (morning gut update, streak guard, post-meal check-in, weekly report, daily log reminder), all scheduled on your device — never more than two a day, and never at night. Nothing is pushed from a server.</li>
     </ul>
     <p>Every permission is optional; the relevant feature simply stays off without it.</p>
 
