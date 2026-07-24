@@ -3,27 +3,226 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flora — Gut Health Tracker</title>
-<meta name="description" content="Flora scores every meal for your gut, learns your triggers, and helps you eat like it matters.">
+<title>Flora — Gut Health AI · Food Scanner & Bloating Coach</title>
+<meta name="description" content="Snap a photo of any meal and get an instant 0–100 gut score. Flora learns YOUR triggers — whole foods score high, seed oils and ultra-processed food score low.">
+<!-- Share cards: og.png sits beside this file (generated at 1200x630 with
+     real engine scores — regenerate via headless Chrome if the brand or the
+     pinned scores ever change). Scrapers need ABSOLUTE image URLs: these
+     point at the flora-legal GitHub Pages host this site deploys to (RUNBOOK
+     "deploy launch/site" step — copy og.png along with the pages). If the
+     site ever moves hosts, update og:url + both image URLs together. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flora">
+<meta property="og:title" content="Flora — snap a photo, get a gut score">
+<meta property="og:description" content="Every meal scored 0–100 by a gut-health engine that learns YOUR triggers. Whole foods score high; seed oils and ultra-processed food score low.">
+<meta property="og:url" content="https://chrisweaver23.github.io/flora-legal/index.html">
+<meta property="og:image" content="https://chrisweaver23.github.io/flora-legal/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flora scores food 0 to 100: steamed broccoli 39, ribeye steak 90, raw honey 95.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flora — snap a photo, get a gut score">
+<meta name="twitter:description" content="Every meal scored 0–100 by a gut-health engine that learns YOUR triggers. Some scores will not be what you were told.">
+<meta name="twitter:image" content="https://chrisweaver23.github.io/flora-legal/og.png">
+<!--
+  Self-contained by contract: inline CSS only, zero external requests.
+  Display serif = system stack (Georgia → Times New Roman → serif); body =
+  the -apple-system stack. All product claims on this page are lifted from
+  the APPROVED App Store listing copy (launch/app-store-listing.md); all
+  scores are real engine measurements (data-pipeline/scorecard.mjs).
+  The scorecard the mailto below promises is a REAL generated artifact:
+  data-pipeline/out/scorecard.pdf (node data-pipeline/scorecard.mjs emits
+  html+csv+pdf) — the owner replies by hand; no ESP/list by decision
+  (see launch/MARKETING.md §6).
+-->
 <style>
-  :root { --ink:#17251D; --ink2:#3C4A42; --ink3:#7A867F; --green:#0A7A46; --bg:#F7FAF7; --card:#FFFFFF; --line:#E4EAE5; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display:flex; min-height:100vh; align-items:center; justify-content:center; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:44px 40px; max-width:430px; text-align:center; margin:24px; }
-  .leaf { width:56px; height:56px; border-radius:28px; background:var(--green); display:flex; align-items:center; justify-content:center; color:#fff; font-size:27px; margin:0 auto 16px; }
-  h1 { font-family:Georgia, "Times New Roman", serif; font-size:34px; margin:0 0 8px; }
-  p { color:var(--ink2); margin:0 0 24px; }
-  .links a { display:inline-block; margin:0 8px; color:var(--green); font-weight:600; }
+  :root {
+    --bg:#EEF1F5; --card:#FFFFFF; --inset:#F4F6F8; --line:#ECEEF1;
+    --ink:#0E1116; --ink2:#5A636E; --ink3:#6A7580;
+    --green:#0DA057; --greenDeep:#0A7A46; --greenBg:#E6F7EF;
+    --gold:#C2A24E; --goldDeep:#755B1E; --goldBg:#F6EFDA; --goldLine:#E8DCBA;
+    --coral:#F0533F; --coralBg:#FCE7E3; --coralDeep:#B8341F;
+    --amberDeep:#B47B0E;
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .serif { font-family:Georgia, "Times New Roman", serif; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 20px; }
+
+  /* nav */
+  nav { display:flex; align-items:center; gap:10px; padding:20px 0; }
+  .leaf { width:36px; height:36px; border-radius:18px; background:var(--greenDeep); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  nav b { font-size:18px; letter-spacing:.2px; }
+  nav .tag { color:var(--ink3); font-size:12px; display:block; margin-top:1px; }
+  nav .links { margin-left:auto; display:flex; gap:18px; }
+  nav .links a { color:var(--ink2); font-weight:600; font-size:13.5px; text-decoration:none; }
+  nav .links a:hover { color:var(--greenDeep); }
+
+  /* hero */
+  .hero { padding:44px 0 10px; text-align:center; }
+  .eyebrow { display:inline-block; background:var(--ink); color:#fff; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:1.4px; padding:7px 16px; text-transform:uppercase; }
+  h1 { font-family:Georgia, "Times New Roman", serif; font-size:clamp(38px, 7vw, 60px); line-height:1.08; letter-spacing:-1px; margin:22px auto 16px; max-width:700px; }
+  h1 em { font-style:italic; color:var(--greenDeep); }
+  .hero p.sub { color:var(--ink2); font-size:clamp(15px, 2.5vw, 18px); max-width:620px; margin:0 auto 28px; }
+  .cta-row { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center; margin-bottom:14px; }
+  .store-badge { display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; border-radius:14px; padding:10px 22px 10px 16px; text-decoration:none; text-align:left; }
+  .store-badge .apple { font-size:26px; line-height:1; }
+  .store-badge small { display:block; font-size:10px; opacity:.75; letter-spacing:.3px; }
+  .store-badge span { font-size:17px; font-weight:700; letter-spacing:.1px; }
+  .ghost { display:inline-block; color:var(--greenDeep); border:1.5px solid var(--greenDeep); border-radius:14px; padding:12px 20px; font-weight:700; font-size:14.5px; text-decoration:none; background:var(--card); }
+  .ghost:hover { background:var(--greenBg); }
+  .fine { color:var(--ink3); font-size:12.5px; }
+
+  /* contrarian scoreboard */
+  .board { margin:44px auto 0; max-width:720px; background:var(--card); border:1px solid var(--line); border-radius:26px; padding:26px 22px 20px; box-shadow:0 18px 28px rgba(14,17,22,.07); }
+  .board .label { font-size:11px; font-weight:800; letter-spacing:1.4px; color:var(--ink3); text-transform:uppercase; text-align:center; }
+  .vs { display:flex; gap:14px; margin:18px 0 6px; }
+  .fcard { flex:1; border-radius:20px; padding:18px 14px 16px; text-align:center; }
+  .fcard.low { background:var(--coralBg); }
+  .fcard.high { background:var(--greenBg); }
+  .fcard .emoji { font-size:30px; }
+  .fcard .name { font-weight:700; font-size:14.5px; margin-top:6px; }
+  .fcard .score { font-family:Georgia, serif; font-size:44px; font-weight:700; line-height:1.1; }
+  .fcard.low .score { color:var(--coralDeep); }
+  .fcard.high .score { color:var(--greenDeep); }
+  .fcard .why { font-size:11.5px; color:var(--ink2); line-height:1.45; max-width:230px; margin:4px auto 0; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px; }
+  .chip { background:var(--inset); border:1px solid var(--line); border-radius:999px; padding:6px 13px; font-size:12.5px; font-weight:700; color:var(--ink2); }
+  .chip b.g { color:var(--greenDeep); } .chip b.a { color:var(--amberDeep); } .chip b.r { color:var(--coralDeep); }
+  .board .foot { text-align:center; color:var(--ink3); font-size:11.5px; margin-top:14px; line-height:1.55; }
+
+  /* features */
+  .features { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:56px 0 0; }
+  @media (max-width:760px) { .features { grid-template-columns:1fr; } nav .links { display:none; } }
+  .feat { background:var(--card); border:1px solid var(--line); border-radius:22px; padding:24px 22px; }
+  .feat .ico { width:44px; height:44px; border-radius:14px; background:var(--greenBg); display:flex; align-items:center; justify-content:center; font-size:21px; margin-bottom:14px; }
+  .feat h3 { font-family:Georgia, serif; font-size:21px; margin-bottom:8px; letter-spacing:-.2px; }
+  .feat p { color:var(--ink2); font-size:14px; }
+
+  /* scorecard lead magnet */
+  .magnet { margin:56px 0 0; background:var(--ink); border-radius:26px; padding:36px 26px; text-align:center; color:#fff; }
+  .magnet .mini { color:var(--gold); font-size:11px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; }
+  .magnet h2 { font-family:Georgia, serif; font-size:clamp(26px, 4.5vw, 34px); margin:12px auto 10px; max-width:520px; letter-spacing:-.4px; }
+  .magnet p { color:rgba(255,255,255,.72); font-size:14.5px; max-width:520px; margin:0 auto 22px; }
+  .magnet a.gold { display:inline-block; background:var(--gold); color:#2A2107; border-radius:999px; padding:13px 26px; font-weight:800; font-size:14.5px; text-decoration:none; }
+  .magnet .fine { color:rgba(255,255,255,.45); display:block; margin-top:12px; }
+
+  /* who it's for */
+  .who { margin:56px 0 0; background:var(--card); border:1px solid var(--line); border-radius:26px; padding:30px 26px; text-align:center; }
+  .who h2 { font-family:Georgia, serif; font-size:26px; letter-spacing:-.3px; margin-bottom:10px; }
+  .who p { color:var(--ink2); font-size:15px; max-width:640px; margin:0 auto; }
+  .who .pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px; }
+  .who .pill { background:var(--goldBg); border:1px solid var(--goldLine); color:var(--goldDeep); border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:700; }
+
+  /* creators strip */
+  .creators { margin:26px 0 0; text-align:center; padding:18px; background:var(--greenBg); border-radius:18px; }
+  .creators a { color:var(--greenDeep); font-weight:800; text-decoration:none; font-size:14px; }
+
+  footer { margin:56px 0 0; border-top:1px solid var(--line); padding:28px 0 44px; text-align:center; color:var(--ink3); font-size:13px; line-height:2; }
+  footer a { color:var(--greenDeep); font-weight:600; text-decoration:none; margin:0 8px; }
 </style>
 </head>
 <body>
-  <div class="card">
+<div class="wrap">
+
+  <nav>
     <div class="leaf">🌿</div>
-    <h1>Flora</h1>
-    <p>The gut-health tracker. Every meal scored for your gut — it learns your triggers and personalizes everything.</p>
+    <div><b>Flora</b><span class="tag">Gut Health AI</span></div>
     <div class="links">
-      <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
+      <a href="methodology.html">How scoring works</a>
+      <a href="creators.html">For creators</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
     </div>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow">Food Scanner &amp; Bloating Coach</span>
+    <h1>Your gut has a score — and every meal <em>moves&nbsp;it</em>.</h1>
+    <p class="sub">Snap a photo of any meal — or speak it, scan a barcode, type it — and get an instant 0–100 gut score with an ingredient-level breakdown. Then watch Flora learn YOUR triggers, and watch your score climb.</p>
+    <div class="cta-row">
+      <a class="store-badge" href="https://apps.apple.com/app/id6790545787"><span class="apple">&#63743;</span><span><small>Download on the</small><span>App Store</span></span></a>
+      <a class="ghost" href="#scorecard">Get the free gut scorecard</a>
+    </div>
+    <p class="fine">7-day free trial · No ads, ever · Your data lives on your phone — no account, nothing sold</p>
+
+    <!-- The wedge: real engine scores, styled as HTML (not app screenshots). -->
+    <div class="board">
+      <div class="label">Real scores from Flora's engine</div>
+      <div class="vs">
+        <div class="fcard low">
+          <div class="emoji">🥦</div>
+          <div class="name">Steamed broccoli</div>
+          <div class="score">39</div>
+          <div class="why">High-FODMAP — cruciferous veg is a frequent source of gas and bloating.</div>
+        </div>
+        <div class="fcard high">
+          <div class="emoji">🥩</div>
+          <div class="name">Ribeye steak</div>
+          <div class="score">90</div>
+          <div class="why">Ruminant meat is the most bioavailable protein there is — nothing to ferment in your gut.</div>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">Raw honey <b class="g">95</b></span>
+        <span class="chip">Sardines <b class="g">90</b></span>
+        <span class="chip">Whole-grain cereal <b class="a">45</b></span>
+        <span class="chip">Veggie burger <b class="a">59</b></span>
+        <span class="chip">Big Mac <b class="r">39</b></span>
+      </div>
+      <div class="foot">Whole foods score high. Seed oils and ultra-processed food score low. And every score is weighed against YOUR personal trigger map — the same meal scores differently for you than for anyone else. <a href="methodology.html" style="color:var(--greenDeep); font-weight:700; text-decoration:none;">See how scoring works →</a></div>
+    </div>
+  </header>
+
+  <section class="features">
+    <div class="feat">
+      <div class="ico">📸</div>
+      <h3>Snap it. Score it.</h3>
+      <p>Photo, barcode, voice &amp; text logging — instant 0–100 gut scores with ingredient-level breakdowns you can correct in one tap.</p>
+    </div>
+    <div class="feat">
+      <div class="ico">🕵️</div>
+      <h3>It learns YOUR triggers.</h3>
+      <p>Report a reaction once and Flora starts connecting the dots. Your trigger map is built from your body's actual responses — never from assumptions. FODMAP-aware, learned from your reports.</p>
+    </div>
+    <div class="feat">
+      <div class="ico">📍</div>
+      <h3>Eat out without guessing.</h3>
+      <p>Every restaurant near you, ranked for your gut — scorecards, menus, directions, and the smartest thing to order when you get there.</p>
+    </div>
+  </section>
+
+  <section class="magnet" id="scorecard">
+    <span class="mini">Free — The 100 Foods Gut Scorecard</span>
+    <h2>100 everyday foods, scored 0–100 by Flora's engine.</h2>
+    <p>Broccoli 39. Ribeye 90. Raw honey 95. "Whole grain" cereal 45. Every score measured by the same engine that scores your meals in the app — with the engine's own one-line reason for each. Some of these will not be what you were told.</p>
+    <a class="gold" href="mailto:cw23business@gmail.com?subject=Send%20me%20the%20100%20Foods%20Gut%20Scorecard&body=Hi%20—%20send%20me%20the%20scorecard%20PDF%20please.">Email me the scorecard</a>
+    <span class="fine">One email, the scorecard by reply, occasional launch updates. Unsubscribe = say the word.</span>
+  </section>
+
+  <section class="who">
+    <h2>Who Flora is for</h2>
+    <p>Whole-food and ancestral eaters. IBS and bloating fighters tired of guessing. Carnivore, paleo, low-FODMAP — or just "I want to feel good after I eat." If you believe food is either working for you or against you, Flora is your scoreboard.</p>
+    <div class="pills">
+      <span class="pill">Carnivore</span><span class="pill">Ancestral</span><span class="pill">Paleo</span><span class="pill">Low-FODMAP</span><span class="pill">IBS &amp; bloating</span><span class="pill">Seed-oil-free</span>
+    </div>
+  </section>
+
+  <div class="creators">
+    <a href="creators.html">Talk about food online? Read the founding-creator offer →</a>
   </div>
+
+  <footer>
+    <div>
+      <a href="methodology.html">How scoring works</a> ·
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms of Service</a> ·
+      <a href="mailto:cw23business@gmail.com?subject=Flora%20support">Support</a>
+    </div>
+    <div>Flora Plus unlocks everything — $19.99/month or $159.99/year. No ads, ever.</div>
+    <div>Flora offers general wellness information, not medical advice.</div>
+  </footer>
+
+</div>
 </body>
 </html>

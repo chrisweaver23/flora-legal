@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flora for Creators — the founding-creator offer</title>
+<meta name="description" content="Flora scores food the way your audience already eats — whole foods high, seed oils low. The founding-creator offer: free Flora Plus, a co-branded scorecard, and a real seat at the table.">
+<!-- Share cards: same generated og.png as index.html (absolute URLs — see
+     the note there; keep both pages' image URLs in lockstep on any host move). -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flora">
+<meta property="og:title" content="Flora for Creators — the founding-creator offer">
+<meta property="og:description" content="Flora scores food the way your audience already eats — whole foods high, seed oils low. Free Plus, a co-branded scorecard, and a real seat at the table.">
+<meta property="og:url" content="https://chrisweaver23.github.io/flora-legal/creators.html">
+<meta property="og:image" content="https://chrisweaver23.github.io/flora-legal/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flora scores food 0 to 100: steamed broccoli 39, ribeye steak 90, raw honey 95.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flora for Creators — the founding-creator offer">
+<meta name="twitter:description" content="Flora scores food the way your audience already eats — whole foods high, seed oils low. The founding-creator offer is open.">
+<meta name="twitter:image" content="https://chrisweaver23.github.io/flora-legal/og.png">
+<!--
+  Self-contained by contract: inline CSS, zero external requests. Display
+  serif = Georgia system stack. Honest by mandate: Flora is brand-new — this
+  page says so plainly instead of faking traction. Scores quoted are real
+  engine measurements (data-pipeline/scorecard.mjs). Rev-share terms are
+  deliberately "let's talk" placeholders for the owner to fill per-creator.
+-->
+<style>
+  :root {
+    --bg:#EEF1F5; --card:#FFFFFF; --inset:#F4F6F8; --line:#ECEEF1;
+    --ink:#0E1116; --ink2:#5A636E; --ink3:#6A7580;
+    --green:#0DA057; --greenDeep:#0A7A46; --greenBg:#E6F7EF;
+    --gold:#C2A24E; --goldDeep:#755B1E; --goldBg:#F6EFDA; --goldLine:#E8DCBA;
+    --coral:#F0533F; --coralBg:#FCE7E3; --coralDeep:#B8341F;
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 20px; }
+  nav { display:flex; align-items:center; gap:10px; padding:20px 0; }
+  .leaf { width:36px; height:36px; border-radius:18px; background:var(--greenDeep); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px; }
+  nav b { font-size:18px; }
+  nav a.home { margin-left:auto; color:var(--ink2); font-weight:600; font-size:13.5px; text-decoration:none; }
+  nav a.home:hover { color:var(--greenDeep); }
+
+  header { padding:36px 0 8px; text-align:center; }
+  .eyebrow { display:inline-block; background:var(--goldBg); border:1px solid var(--goldLine); color:var(--goldDeep); border-radius:999px; font-size:11px; font-weight:800; letter-spacing:1.4px; padding:7px 16px; text-transform:uppercase; }
+  h1 { font-family:Georgia, "Times New Roman", serif; font-size:clamp(32px, 6vw, 46px); line-height:1.12; letter-spacing:-.6px; margin:20px auto 14px; max-width:640px; }
+  h1 em { font-style:italic; color:var(--greenDeep); }
+  header p.sub { color:var(--ink2); font-size:16px; max-width:600px; margin:0 auto; }
+
+  section { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:28px 26px; margin-top:22px; }
+  section h2 { font-family:Georgia, serif; font-size:24px; letter-spacing:-.3px; margin-bottom:12px; }
+  section p { color:var(--ink2); font-size:14.5px; margin-bottom:12px; }
+  section p:last-child { margin-bottom:0; }
+  section p b { color:var(--ink); }
+
+  .scores { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 4px; }
+  .chip { background:var(--inset); border:1px solid var(--line); border-radius:999px; padding:6px 13px; font-size:12.5px; font-weight:700; color:var(--ink2); }
+  .chip b.g { color:var(--greenDeep); } .chip b.a { color:#B47B0E; } .chip b.r { color:var(--coralDeep); }
+
+  .offer { border:none; background:var(--ink); color:#fff; }
+  .offer h2 { color:#fff; }
+  .offer .mini { color:var(--gold); font-size:11px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; display:block; margin-bottom:10px; }
+  .offer ol { list-style:none; counter-reset:n; margin:16px 0 6px; }
+  .offer li { counter-increment:n; display:flex; gap:14px; padding:13px 0; border-top:1px solid rgba(255,255,255,.12); }
+  .offer li::before { content:counter(n); flex-shrink:0; width:28px; height:28px; border-radius:14px; background:var(--gold); color:#2A2107; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+  .offer li div b { display:block; font-size:15px; margin-bottom:3px; }
+  .offer li div span { color:rgba(255,255,255,.68); font-size:13.5px; line-height:1.55; }
+  .offer .honest { background:rgba(255,255,255,.07); border-radius:14px; padding:14px 16px; font-size:13px; color:rgba(255,255,255,.75); margin-top:14px; line-height:1.6; }
+  .offer .honest b { color:#fff; }
+
+  .cta { text-align:center; padding:34px 26px; }
+  .cta a.mail { display:inline-block; background:var(--greenDeep); color:#fff; border-radius:999px; padding:14px 28px; font-weight:800; font-size:15px; text-decoration:none; }
+  .cta p.fine { color:var(--ink3); font-size:12.5px; margin-top:12px; }
+
+  footer { margin-top:40px; border-top:1px solid var(--line); padding:26px 0 44px; text-align:center; color:var(--ink3); font-size:13px; line-height:2; }
+  footer a { color:var(--greenDeep); font-weight:600; text-decoration:none; margin:0 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="leaf">🌿</div><b>Flora</b>
+    <a class="home" href="index.html">← flora home</a>
+  </nav>
+
+  <header>
+    <span class="eyebrow">For creators — founding cohort</span>
+    <h1>You've been telling people this for years. Now there's an app that <em>agrees with&nbsp;you</em>.</h1>
+    <p class="sub">Flora is a gut-health tracker that scores every meal 0–100 the ancestral way: whole animal foods, fruit and gentle carbs score high — seed oils, refined flour and ultra-processed food score low.</p>
+  </header>
+
+  <section>
+    <h2>The wedge you already own</h2>
+    <p>If your audience is carnivore, animal-based, ancestral, seed-oil-aware, or fighting IBS and bloating, they already believe what Flora's engine measures. Most nutrition apps score their worldview as a rounding error. Flora is built on it:</p>
+    <div class="scores">
+      <span class="chip">Ribeye steak <b class="g">90</b></span>
+      <span class="chip">Beef liver <b class="g">100</b></span>
+      <span class="chip">Butter <b class="g">90</b></span>
+      <span class="chip">Raw honey <b class="g">95</b></span>
+      <span class="chip">Steamed broccoli <b class="r">39</b></span>
+      <span class="chip">"Whole grain" cereal <b class="a">45</b></span>
+      <span class="chip">Margarine <b class="r">36</b></span>
+    </div>
+    <p>Every number above is a real measurement from the shipping engine — not marketing copy. That's the content angle: <b>"an app finally scored food the way I've been telling you to eat"</b> — and the scores hold up when your comments section checks them.</p>
+  </section>
+
+  <section>
+    <h2>What Flora actually does</h2>
+    <p>Snap a photo of any meal — or speak it, scan a barcode, type it — and get an instant 0–100 gut score with an ingredient-level breakdown. It spots seed oils by name. It learns each user's personal triggers from their own reaction reports (FODMAP-aware, never guessed), ranks every restaurant nearby for their gut, and sends weekly gut reports.</p>
+    <p>$19.99/month or $159.99/year after a 7-day free trial. No ads, ever. No account — data stays on the phone, nothing sold.</p>
+  </section>
+
+  <section class="offer">
+    <span class="mini">The founding-creator offer</span>
+    <h2>First in gets the most.</h2>
+    <ol>
+      <li><div><b>Flora Plus, free, for life</b><span>Founding creators never pay for Flora. Full access on the house — score your own meals, film real reactions, stress-test the engine on camera.</span></div></li>
+      <li><div><b>"Your audience's 50 foods, scored" — co-branded, yours to give away</b><span>Tell us the 50 foods your audience actually eats and argues about; we score them through the real engine and build the scorecard with your name on it — the broccoli-39 / ribeye-90 reveal, customized to your comment section.</span></div></li>
+      <li><div><b>Revenue share on the annual subscribers you refer — let's talk terms</b><span>Offer codes make referrals trackable per-creator. Cut and structure agreed person-to-person before you post anything, in writing.</span></div></li>
+      <li><div><b>A real seat at the table</b><span>Founding creators talk directly to the founder. If the engine scores something wrong for your way of eating, it gets looked at — and you'll see the reasoning either way.</span></div></li>
+    </ol>
+    <div class="honest"><b>The honest print:</b> Flora launched in 2026 and the founding cohort is just forming — you'd be among the very first. That means no inflated case studies and no fake "creators are earning $X" screenshots, because there aren't any yet. It also means the upside of being first is real: the wedge is wide open, and the people who plant the flag own it.</div>
+  </section>
+
+  <section>
+    <h2>What to post</h2>
+    <p>The format that works is the <b>scan-reaction</b>: point the camera at real food, scan it on screen, react to the number. The score does the arguing for you. Three shapes of it:</p>
+    <p><b>1. The broccoli test.</b> Scan the food diet culture worships, then the food it fears — broccoli, then a ribeye — side by side, and react to 39 vs 90 on camera. The comment section finishes the video for you.</p>
+    <p><b>2. Scan your actual fridge.</b> Walk your kitchen and scan five staples you already eat and defend — liver, butter, raw honey, sardines. "An app finally agrees with me" is the whole arc.</p>
+    <p><b>3. Score my food.</b> Ask followers to name foods in the comments, scan the most-argued ones in the next video. Repeatable weekly, and the requests tell you exactly what your audience wants settled.</p>
+  </section>
+
+  <div class="cta">
+    <a class="mail" href="mailto:cw23business@gmail.com?subject=Founding%20creator%20—%20Flora&body=Hi%20—%20I%20make%20content%20about%20(carnivore%20%2F%20ancestral%20%2F%20gut%20health%20%2F%20...)%20for%20an%20audience%20of%20about%20___.%20Here's%20where%20I%20post%3A%20">Talk to the founder</a>
+    <p class="fine">One email, straight to the person who built it. Tell me what you make and where you post it.</p>
+  </div>
+
+  <footer>
+    <div>
+      <a href="index.html">Home</a> ·
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms of Service</a> ·
+      <a href="mailto:cw23business@gmail.com?subject=Flora%20support">Support</a>
+    </div>
+    <div>Flora offers general wellness information, not medical advice.</div>
+  </footer>
+
+</div>
+</body>
+</html>

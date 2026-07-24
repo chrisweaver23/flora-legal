@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Flora scores food — full methodology &amp; all 100 scores</title>
+<meta name="description" content="Flora's gut-health scoring model, in plain language, with the full 100-food scorecard. Every score is the engine's real output — including the ones that start arguments.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flora">
+<meta property="og:title" content="How Flora scores food — the receipts">
+<meta property="og:description" content="Steamed broccoli 39. Ribeye 90. Here's the model behind the scores — and all 100 of them, unedited.">
+<meta property="og:url" content="https://chrisweaver23.github.io/flora-legal/methodology.html">
+<meta property="og:image" content="https://chrisweaver23.github.io/flora-legal/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flora scores food 0 to 100: steamed broccoli 39, ribeye steak 90, raw honey 95.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Flora scores food — the receipts">
+<meta name="twitter:description" content="The scoring model in plain language, plus all 100 scores from the real engine — including the ones that start arguments.">
+<meta name="twitter:image" content="https://chrisweaver23.github.io/flora-legal/og.png">
+<!--
+  Self-contained by contract: inline CSS only, zero external requests.
+  PANEL SESSION 1 ARTIFACT (launch/DECISIONS.md, Decision 3): the public
+  receipts page — Dunford's anti-quackery armor, Fishkin's citable reference.
+  Every score below is the engine's real output, copied verbatim from
+  data-pipeline/out/scorecard.csv (node data-pipeline/scorecard.mjs). If the
+  engine changes, regenerate the scorecard and update this table — NEVER edit
+  a number here by hand. Product claims are lifted from the approved listing
+  copy (launch/app-store-listing.md).
+-->
+<style>
+  :root {
+    --bg:#EEF1F5; --card:#FFFFFF; --inset:#F4F6F8; --line:#ECEEF1;
+    --ink:#0E1116; --ink2:#5A636E; --ink3:#6A7580;
+    --green:#0DA057; --greenDeep:#0A7A46; --greenBg:#E6F7EF;
+    --gold:#C2A24E; --goldDeep:#755B1E; --goldBg:#F6EFDA; --goldLine:#E8DCBA;
+    --coral:#F0533F; --coralBg:#FCE7E3; --coralDeep:#B8341F;
+    --amberDeep:#B47B0E; --amberBg:#FBF1DC;
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 20px; }
+
+  nav { display:flex; align-items:center; gap:10px; padding:20px 0; }
+  .leaf { width:36px; height:36px; border-radius:18px; background:var(--greenDeep); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  nav b { font-size:18px; letter-spacing:.2px; }
+  nav .tag { color:var(--ink3); font-size:12px; display:block; margin-top:1px; }
+  nav .links { margin-left:auto; display:flex; gap:18px; }
+  nav .links a { color:var(--ink2); font-weight:600; font-size:13.5px; text-decoration:none; }
+  nav .links a:hover { color:var(--greenDeep); }
+  @media (max-width:760px) { nav .links { display:none; } }
+
+  .hero { padding:40px 0 8px; text-align:center; }
+  .eyebrow { display:inline-block; background:var(--ink); color:#fff; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:1.4px; padding:7px 16px; text-transform:uppercase; }
+  h1 { font-family:Georgia, "Times New Roman", serif; font-size:clamp(34px, 6.5vw, 54px); line-height:1.1; letter-spacing:-1px; margin:22px auto 16px; max-width:760px; }
+  h1 em { font-style:italic; color:var(--greenDeep); }
+  .hero p.sub { color:var(--ink2); font-size:clamp(15px, 2.5vw, 18px); max-width:660px; margin:0 auto 10px; }
+
+  h2 { font-family:Georgia, serif; font-size:clamp(24px, 4vw, 30px); letter-spacing:-.4px; margin-bottom:10px; }
+  .sect { margin-top:52px; }
+  .sect > p.lead { color:var(--ink2); font-size:15.5px; max-width:700px; margin-bottom:6px; }
+
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:22px; }
+  @media (max-width:760px) { .grid { grid-template-columns:1fr; } }
+  .cardp { background:var(--card); border:1px solid var(--line); border-radius:22px; padding:22px 20px; }
+  .cardp .ico { width:44px; height:44px; border-radius:14px; background:var(--greenBg); display:flex; align-items:center; justify-content:center; font-size:21px; margin-bottom:12px; }
+  .cardp h3 { font-family:Georgia, serif; font-size:19px; margin-bottom:7px; letter-spacing:-.2px; }
+  .cardp p { color:var(--ink2); font-size:13.5px; line-height:1.55; }
+
+  .vsboard { margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:26px; padding:24px 22px 18px; }
+  .vs { display:flex; gap:14px; }
+  .fcard { flex:1; border-radius:20px; padding:18px 14px 16px; text-align:center; }
+  .fcard.low { background:var(--coralBg); }
+  .fcard.high { background:var(--greenBg); }
+  .fcard .emoji { font-size:30px; }
+  .fcard .name { font-weight:700; font-size:14.5px; margin-top:6px; }
+  .fcard .score { font-family:Georgia, serif; font-size:44px; font-weight:700; line-height:1.1; }
+  .fcard.low .score { color:var(--coralDeep); }
+  .fcard.high .score { color:var(--greenDeep); }
+  .fcard .why { font-size:11.5px; color:var(--ink2); line-height:1.45; max-width:240px; margin:4px auto 0; }
+  .vsboard .foot { text-align:center; color:var(--ink3); font-size:12px; margin-top:14px; line-height:1.6; max-width:640px; margin-left:auto; margin-right:auto; }
+
+  /* the full table */
+  .tablecard { background:var(--card); border:1px solid var(--line); border-radius:26px; padding:10px 0 6px; margin-top:22px; overflow:hidden; }
+  .thead { display:grid; grid-template-columns:64px 1fr; gap:14px; padding:10px 22px; font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--ink3); border-bottom:1px solid var(--line); }
+  .row { display:grid; grid-template-columns:64px 1fr; gap:14px; padding:11px 22px; border-bottom:1px solid var(--line); align-items:baseline; }
+  .row:last-child { border-bottom:none; }
+  .row .s { font-family:Georgia, serif; font-size:22px; font-weight:700; text-align:right; }
+  .s.t { color:var(--greenDeep); } .s.so { color:var(--green); } .s.m { color:var(--amberDeep); } .s.p { color:var(--coralDeep); }
+  .row .n { font-weight:700; font-size:14.5px; }
+  .row .w { display:block; color:var(--ink3); font-size:12px; line-height:1.5; margin-top:1px; }
+  .bandhead { padding:14px 22px 6px; font-size:11px; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; }
+  .bandhead.t { color:var(--greenDeep); } .bandhead.so { color:var(--green); } .bandhead.m { color:var(--amberDeep); } .bandhead.p { color:var(--coralDeep); }
+
+  .honesty { margin-top:52px; background:var(--ink); border-radius:26px; padding:34px 26px; color:#fff; }
+  .honesty .mini { color:var(--gold); font-size:11px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; }
+  .honesty h2 { color:#fff; margin-top:10px; }
+  .honesty p { color:rgba(255,255,255,.75); font-size:14.5px; max-width:720px; margin-top:10px; }
+  .honesty ul { margin:14px 0 0 18px; color:rgba(255,255,255,.75); font-size:14.5px; }
+  .honesty li { margin-top:8px; }
+  .honesty b { color:#fff; }
+
+  .cta { margin-top:52px; text-align:center; background:var(--card); border:1px solid var(--line); border-radius:26px; padding:34px 24px; }
+  .cta h2 { margin-bottom:8px; }
+  .cta p { color:var(--ink2); font-size:15px; max-width:560px; margin:0 auto 22px; }
+  .cta-row { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center; }
+  .store-badge { display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; border-radius:14px; padding:10px 22px 10px 16px; text-decoration:none; text-align:left; }
+  .store-badge .apple { font-size:26px; line-height:1; }
+  .store-badge small { display:block; font-size:10px; opacity:.75; letter-spacing:.3px; }
+  .store-badge span { font-size:17px; font-weight:700; letter-spacing:.1px; }
+  .ghost { display:inline-block; color:var(--greenDeep); border:1.5px solid var(--greenDeep); border-radius:14px; padding:12px 20px; font-weight:700; font-size:14.5px; text-decoration:none; background:var(--card); }
+  .ghost:hover { background:var(--greenBg); }
+
+  footer { margin:56px 0 0; border-top:1px solid var(--line); padding:28px 0 44px; text-align:center; color:var(--ink3); font-size:13px; line-height:2; }
+  footer a { color:var(--greenDeep); font-weight:600; text-decoration:none; margin:0 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="leaf">🌿</div>
+    <div><b>Flora</b><span class="tag">Gut Health AI</span></div>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="creators.html">For creators</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow">The receipts · Full methodology</span>
+    <h1>Your gut has a score. Here's exactly <em>how it's computed</em>.</h1>
+    <p class="sub">Some of Flora's scores will not be what you were told — steamed broccoli scores 39, ribeye scores 90. This page is the model in plain language, plus all 100 scores from our public scorecard, unedited. Argue with any of them; that's what the page is for.</p>
+  </header>
+
+  <section class="sect">
+    <h2>The model, in plain language</h2>
+    <p class="lead">Flora scores every food and meal 0–100 for one question only: <b>how much work does your gut have to do to deal with this?</b> Not calories. Not fat grams. Not food morality.</p>
+    <div class="grid">
+      <div class="cardp"><div class="ico">🥩</div><h3>Foods your gut recognizes score high</h3><p>Ruminant meat, eggs, fish, ripe fruit, roots, raw honey, fermented and whole dairy — single-ingredient foods humans have digested for millennia start at the top of the scale. There's simply nothing in them to fight.</p></div>
+      <div class="cardp"><div class="ico">🏭</div><h3>Industrial food scores low</h3><p>Seed oils, refined sugar, refined flour, additives, dyes and ultra-processed formulations pull scores down hard — with seed oils weighted as the single worst offender. Two "identical" products can sit 40 points apart on their ingredient panels alone.</p></div>
+      <div class="cardp"><div class="ico">💨</div><h3>Fermentable load counts — even in "health" foods</h3><p>Cruciferous veg, legumes and soy are high-FODMAP: they ferment in the gut and are among the most common causes of gas and bloating. That's why steamed broccoli starts at 39. It isn't "junk food" — it's honest accounting of digestive work.</p></div>
+      <div class="cardp"><div class="ico">🧬</div><h3>Then YOUR body personalizes it</h3><p>Base scores reflect how often a food causes gut trouble in general. Report how you actually feel and Flora builds your personal trigger map — the same meal scores differently for you than for anyone else, based on your body's real responses, never on assumptions.</p></div>
+      <div class="cardp"><div class="ico">📈</div><h3>Two scores that mean something</h3><p>Today's Eating is the honest average of what you ate today. Your Gut Health score is the long game — it moves a few points a day at most, climbs with consistent good days, and heals overnight while you sleep. No single meal ruins you; no single salad saves you.</p></div>
+      <div class="cardp"><div class="ico">🔬</div><h3>Backed, corrected, never fudged</h3><p>Every score traces to a stated mechanism, and the in-app Gut Science library carries real published studies explained in plain language. Think a score is wrong? Every ingredient has a "Score seem off?" flag — corrections feed the engine. Scores are never edited for marketing.</p></div>
+    </div>
+  </section>
+
+  <section class="sect">
+    <h2>Where we break from mainstream ratings</h2>
+    <p class="lead">Most food scores grade calories, saturated fat, or plant-versus-animal morality — so they call steak a sin and wave broccoli through. Flora grades digestive reality. That inverts some famous verdicts:</p>
+    <div class="vsboard">
+      <div class="vs">
+        <div class="fcard low">
+          <div class="emoji">🥦</div>
+          <div class="name">Steamed broccoli</div>
+          <div class="score">39</div>
+          <div class="why">High-FODMAP — cruciferous veg is a frequent source of gas and bloating.</div>
+        </div>
+        <div class="fcard high">
+          <div class="emoji">🥩</div>
+          <div class="name">Ribeye steak</div>
+          <div class="score">90</div>
+          <div class="why">Ruminant meat is the most bioavailable protein there is — nothing to ferment in your gut.</div>
+        </div>
+      </div>
+      <p class="foot">If broccoli never bothers you, great — log it, report how you feel, and your personal trigger map reflects that. The 39 is the starting point for a gut Flora hasn't met yet, not a verdict on yours.</p>
+    </div>
+  </section>
+
+  <section class="sect">
+    <h2>All 100 scores, unedited</h2>
+    <p class="lead">The full public scorecard, straight from the engine — the same numbers the app will show you. Bands: <b style="color:var(--greenDeep)">Thriving 90+</b> · <b style="color:var(--green)">Solid 70s–80s</b> · <b style="color:var(--amberDeep)">Moderate ~50s–60s</b> · <b style="color:var(--coralDeep)">Poor below 50</b>.</p>
+    <div class="tablecard">
+      <div class="thead"><span>Score</span><span>Food — the engine's own reason</span></div>
+
+      <div class="bandhead t">Thriving</div>
+      <div class="row"><b class="s t">100</b><div><span class="n">Beef liver</span><span class="w">Red meat: Ruminant meat is the most bioavailable protein there is — iron, zinc and B12 with nothing to ferment in your gut.</span></div></div>
+      <div class="row"><b class="s t">95</b><div><span class="n">Raw honey</span><span class="w">Raw honey: Whole-food sweeteners like raw honey come with enzymes and minerals, not just sugar.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Kombucha</span><span class="w">Fermented food: Live cultures support a diverse, resilient microbiome.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Ribeye steak</span><span class="w">Red meat: Ruminant meat is the most bioavailable protein there is — iron, zinc and B12 with nothing to ferment in your gut.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Butter</span><span class="w">Traditional animal fats: Stable saturated fats (butter, tallow, ghee) carry vitamins and satisfy without irritating the gut.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Lamb chops</span><span class="w">Red meat: Ruminant meat is the most bioavailable protein there is — iron, zinc and B12 with nothing to ferment in your gut.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Ground beef</span><span class="w">Red meat: Ruminant meat is the most bioavailable protein there is — iron, zinc and B12 with nothing to ferment in your gut.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Watermelon</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Mango</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Full-fat greek yogurt</span><span class="w">Whole / raw dairy: Whole and fermented dairy bring probiotics, calcium and fat-soluble vitamins.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Banana</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Apple</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Blueberries</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Strawberries</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Grapes</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Pineapple</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Orange</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Avocado</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Grilled chicken breast</span><span class="w">Poultry: Lean, gut-gentle animal protein.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Rotisserie chicken</span><span class="w">Poultry: Lean, gut-gentle animal protein.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Grilled salmon</span><span class="w">Wild fish &amp; seafood: Omega-3s from fish actively lower inflammation, and seafood protein is gut-gentle.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Sardines</span><span class="w">Wild fish &amp; seafood: Omega-3s from fish actively lower inflammation, and seafood protein is gut-gentle.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Canned tuna</span><span class="w">Wild fish &amp; seafood: Omega-3s from fish actively lower inflammation, and seafood protein is gut-gentle.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Shrimp</span><span class="w">Wild fish &amp; seafood: Omega-3s from fish actively lower inflammation, and seafood protein is gut-gentle.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Scrambled eggs</span><span class="w">Eggs: Whole eggs are a complete, easily digested protein with choline and fat-soluble vitamins.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Hard boiled eggs</span><span class="w">Eggs: Whole eggs are a complete, easily digested protein with choline and fat-soluble vitamins.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Kefir</span><span class="w">Whole / raw dairy: Whole and fermented dairy bring probiotics, calcium and fat-soluble vitamins.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Sauerkraut</span><span class="w">Fermented food: Live cultures support a diverse, resilient microbiome.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Kimchi</span><span class="w">Fermented food: Live cultures support a diverse, resilient microbiome.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Cheddar cheese</span><span class="w">Whole / raw dairy: Whole and fermented dairy bring probiotics, calcium and fat-soluble vitamins.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Cottage cheese</span><span class="w">Whole / raw dairy: Whole and fermented dairy bring probiotics, calcium and fat-soluble vitamins.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Spinach salad with olive oil</span><span class="w">Whole-food fats: Olive oil, avocado and coconut are anti-inflammatory fats your body uses cleanly.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Carrots</span><span class="w">Root vegetables: Roots are gentle, well-tolerated carbohydrates — fuel without the gas.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Sweet potato</span><span class="w">Root vegetables: Roots are gentle, well-tolerated carbohydrates — fuel without the gas.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Baked potato</span><span class="w">Root vegetables: Roots are gentle, well-tolerated carbohydrates — fuel without the gas.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Guacamole</span><span class="w">Whole-food fats: Olive oil, avocado and coconut are anti-inflammatory fats your body uses cleanly.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">White rice</span><span class="w">White rice: A clean, low-irritant carbohydrate — one of the gentlest starches there is.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Cantaloupe</span><span class="w">Whole fruit: Ripe fruit is clean, easily digested energy with polyphenols and minerals — nothing your body has to fight.</span></div></div>
+      <div class="row"><b class="s t">90</b><div><span class="n">Sourdough toast</span><span class="w">Fermented food: Live cultures support a diverse, resilient microbiome.</span></div></div>
+
+      <div class="bandhead so">Solid</div>
+      <div class="row"><b class="s so">85</b><div><span class="n">Green tea</span><span class="w">Tea: Brewed tea — polyphenols and gentle, warm hydration with next to nothing for the gut to fight.</span></div></div>
+      <div class="row"><b class="s so">82</b><div><span class="n">Coconut water</span><span class="w">Coconut water: Natural electrolytes with light fruit sugar — clean hydration.</span></div></div>
+      <div class="row"><b class="s so">80</b><div><span class="n">Orange juice</span><span class="w">Fresh juice: Squeezed fruit — clean, recognizable energy; only the whole fruit's fiber is missing.</span></div></div>
+      <div class="row"><b class="s so">80</b><div><span class="n">Acai smoothie bowl</span><span class="w">Blended fruit: Blended whole fruit — the fiber is still in the glass; big blends just stack fruit sugar quickly.</span></div></div>
+      <div class="row"><b class="s so">77</b><div><span class="n">Whole milk</span><span class="w">Milk: Whole milk carries protein and fat-soluble vitamins — fine unless lactose bothers you.</span></div></div>
+      <div class="row"><b class="s so">76</b><div><span class="n">Peanut butter</span><span class="w">Nuts: Nuts are real food — minerals and stable fats — just dense, so portions matter.</span></div></div>
+      <div class="row"><b class="s so">76</b><div><span class="n">Almonds</span><span class="w">Nuts: Nuts are real food — minerals and stable fats — just dense, so portions matter.</span></div></div>
+      <div class="row"><b class="s so">76</b><div><span class="n">Walnuts</span><span class="w">Nuts: Nuts are real food — minerals and stable fats — just dense, so portions matter.</span></div></div>
+
+      <div class="bandhead m">Moderate</div>
+      <div class="row"><b class="s m">64</b><div><span class="n">Beef jerky</span><span class="w">Processed meat: Cured and processed meats carry nitrates and additives that are harder on the gut than fresh meat.</span></div></div>
+      <div class="row"><b class="s m">59</b><div><span class="n">Veggie burger</span><span class="w">Refined grains: A burger or sandwich rides on a refined-flour bun unless you order it without.</span></div></div>
+      <div class="row"><b class="s m">58</b><div><span class="n">Deli turkey sandwich</span><span class="w">Refined grains: A burger or sandwich rides on a refined-flour bun unless you order it without.</span></div></div>
+      <div class="row"><b class="s m">57</b><div><span class="n">Bacon and eggs</span><span class="w">Processed meat: Cured and processed meats carry nitrates and additives that are harder on the gut than fresh meat.</span></div></div>
+      <div class="row"><b class="s m">55</b><div><span class="n">Blueberry muffin</span><span class="w">Refined grains: Refined, gluten-heavy grains are low in nutrition and a common bloating culprit.</span></div></div>
+      <div class="row"><b class="s m">54</b><div><span class="n">Fish and chips</span><span class="w">Deep-fried: Deep-fried in seed oils — inflammatory and heavy on the gut.</span></div></div>
+      <div class="row"><b class="s m">53</b><div><span class="n">Pork chop</span><span class="w">Good protein: 26g of protein supports a calm, well-fed gut.</span></div></div>
+      <div class="row"><b class="s m">51</b><div><span class="n">Fried chicken</span><span class="w">Deep-fried: Deep-fried in seed oils — inflammatory and heavy on the gut.</span></div></div>
+      <div class="row"><b class="s m">51</b><div><span class="n">Chicken nuggets</span><span class="w">Deep-fried: Deep-fried in seed oils — inflammatory and heavy on the gut.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Oat milk latte</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Protein bar</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Rice cakes</span><span class="w">White rice: A clean, low-irritant carbohydrate — one of the gentlest starches there is.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Caesar salad with ranch dressing</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Salad with fat-free dressing</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Almond milk</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Quinoa</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Plain oatmeal</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">California sushi roll</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Carnitas tacos</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Popcorn</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+      <div class="row"><b class="s m">50</b><div><span class="n">Black coffee</span><span class="w">No strong engine signals either way — scores neutral.</span></div></div>
+
+      <div class="bandhead p">Poor</div>
+      <div class="row"><b class="s p">48</b><div><span class="n">Cheeseburger</span><span class="w">Refined grains: A burger or sandwich rides on a refined-flour bun unless you order it without.</span></div></div>
+      <div class="row"><b class="s p">47</b><div><span class="n">Potato chips</span><span class="w">Deep-fried: Deep-fried in seed oils — inflammatory and heavy on the gut.</span></div></div>
+      <div class="row"><b class="s p">46</b><div><span class="n">Hot dog</span><span class="w">Processed meat: Cured and processed meats carry nitrates and additives that are harder on the gut than fresh meat.</span></div></div>
+      <div class="row"><b class="s p">45</b><div><span class="n">Whole grain breakfast cereal</span><span class="w">Refined grains: Refined, gluten-heavy grains are low in nutrition and a common bloating culprit.</span></div></div>
+      <div class="row"><b class="s p">45</b><div><span class="n">White bread</span><span class="w">Refined grains: Refined, gluten-heavy grains are low in nutrition and a common bloating culprit.</span></div></div>
+      <div class="row"><b class="s p">45</b><div><span class="n">Bagel with cream cheese</span><span class="w">Refined grains: Refined, gluten-heavy grains are low in nutrition and a common bloating culprit.</span></div></div>
+      <div class="row"><b class="s p">45</b><div><span class="n">Pasta with marinara</span><span class="w">Refined grains: Refined, gluten-heavy grains are low in nutrition and a common bloating culprit.</span></div></div>
+      <div class="row"><b class="s p">45</b><div><span class="n">Mac and cheese</span><span class="w">Refined grains: Refined, gluten-heavy grains are low in nutrition and a common bloating culprit.</span></div></div>
+      <div class="row"><b class="s p">45</b><div><span class="n">Beer</span><span class="w">Alcohol: Alcohol irritates the gut lining and feeds inflammation.</span></div></div>
+      <div class="row"><b class="s p">45</b><div><span class="n">Red wine</span><span class="w">Alcohol: Alcohol irritates the gut lining and feeds inflammation.</span></div></div>
+      <div class="row"><b class="s p">44</b><div><span class="n">Milkshake</span><span class="w">Refined sugar: 34g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">43</b><div><span class="n">Dark chocolate</span><span class="w">Refined sugar: 14g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">43</b><div><span class="n">Chocolate chip cookies</span><span class="w">Refined sugar: 14g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">43</b><div><span class="n">Glazed donut</span><span class="w">Refined sugar: 12g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">41</b><div><span class="n">Pepperoni pizza</span><span class="w">Refined grains: Refined, gluten-heavy grains are low in nutrition and a common bloating culprit.</span></div></div>
+      <div class="row"><b class="s p">40</b><div><span class="n">Instant flavored oatmeal</span><span class="w">Ultra-processed: Industrial ingredients your gut isn't built to recognize — they disrupt the gut lining and microbiome.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Steamed broccoli</span><span class="w">High-FODMAP plants: Cruciferous veg, legumes and soy are high-FODMAP — a frequent source of gas and bloating.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Ice cream</span><span class="w">Refined sugar: 28g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Kale salad</span><span class="w">High-FODMAP plants: Cruciferous veg, legumes and soy are high-FODMAP — a frequent source of gas and bloating.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Hummus</span><span class="w">High-FODMAP plants: Cruciferous veg, legumes and soy are high-FODMAP — a frequent source of gas and bloating.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Lentil soup</span><span class="w">High-FODMAP plants: Cruciferous veg, legumes and soy are high-FODMAP — a frequent source of gas and bloating.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Black beans</span><span class="w">High-FODMAP plants: Cruciferous veg, legumes and soy are high-FODMAP — a frequent source of gas and bloating.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Tofu</span><span class="w">High-FODMAP plants: Cruciferous veg, legumes and soy are high-FODMAP — a frequent source of gas and bloating.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">McDonalds Big Mac</span><span class="w">Fast food: Built from refined grains, seed oils and additives — engineered for craving, not digestion.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Gummy bears</span><span class="w">Refined sugar: 26g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">39</b><div><span class="n">Cola</span><span class="w">Refined sugar: 24g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">38</b><div><span class="n">Pancakes with maple syrup</span><span class="w">Refined sugar: 23g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">36</b><div><span class="n">Margarine on toast</span><span class="w">Industrial seed oils: Seed oils are oxidation-prone, ultra-refined fats that drive inflammation — the single worst thing for your gut.</span></div></div>
+      <div class="row"><b class="s p">36</b><div><span class="n">Tortilla chips</span><span class="w">Deep-fried: Deep-fried in seed oils — inflammatory and heavy on the gut.</span></div></div>
+      <div class="row"><b class="s p">35</b><div><span class="n">Instant ramen</span><span class="w">Ultra-processed: Industrial ingredients your gut isn't built to recognize — they disrupt the gut lining and microbiome.</span></div></div>
+      <div class="row"><b class="s p">35</b><div><span class="n">Energy drink</span><span class="w">Refined sugar: 51g of added sugar feeds dysbiotic bacteria and spikes inflammation.</span></div></div>
+      <div class="row"><b class="s p">32</b><div><span class="n">McDonalds french fries</span><span class="w">Fast food: Built from refined grains, seed oils and additives — engineered for craving, not digestion.</span></div></div>
+    </div>
+  </section>
+
+  <section class="honesty">
+    <span class="mini">Honesty rules</span>
+    <h2>What these scores are — and aren't</h2>
+    <ul>
+      <li><b>Every number is the engine's real output.</b> The scores above were generated by the same engine that ships in the app, and this page is regenerated from it — no score is ever hand-edited to make better content.</li>
+      <li><b>Base scores are starting points, not verdicts.</b> They reflect how often a food causes gut trouble in general. Your reports teach Flora which of those risks actually apply to you — that personalization is the whole product.</li>
+      <li><b>Neutral means neutral.</b> Where the engine has no strong signal, it says so and scores 50 — it doesn't invent an opinion.</li>
+      <li><b>Disagreement is welcome, with receipts.</b> Every ingredient in the app carries its mechanism and, where we've curated one, a published study. If you think a score is wrong, flag it in-app — corrections feed the engine.</li>
+      <li><b>Flora offers general wellness information, not medical advice.</b> If you have a diagnosed condition, work with your clinician — Flora is a scoreboard, not a doctor.</li>
+    </ul>
+  </section>
+
+  <section class="cta">
+    <h2>See what <em style="color:var(--greenDeep); font-style:italic;">your</em> meals score</h2>
+    <p>Snap a photo, speak it, scan a barcode, or type it — instant 0–100 gut score, ingredient-level breakdown, and a trigger map built from your body's actual responses.</p>
+    <div class="cta-row">
+      <a class="store-badge" href="https://apps.apple.com/app/id6790545787"><span class="apple">&#63743;</span><span><small>Download on the</small><span>App Store</span></span></a>
+      <a class="ghost" href="index.html#scorecard">Get the free 100-food scorecard</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="creators.html">For creators</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+    <div>Flora offers general wellness information, not medical advice.</div>
+  </footer>
+
+</div>
+</body>
+</html>
