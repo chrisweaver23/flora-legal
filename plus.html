@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flora — Get Flora Plus</title>
+<meta name="description" content="Buy Flora Plus access and get a code that turns it on in the app.">
+<!--
+  OWNER SETUP — the one placeholder on this page (2026-09-22).
+
+  PAYMENT_LINK below is a dead href until it is replaced with the real Stripe
+  Payment Link. Until then the buttons go nowhere on purpose: a live-looking
+  buy button that 404s costs more trust than no button at all.
+
+  1. Stripe → Products: one product, two prices — "Flora Plus, lifetime" and
+     "Flora Plus, 1 year". BOTH MUST BE "One time", NEVER "Recurring": a
+     recurring price makes a subscription that charges forever and only ever
+     mints ONE code (the first payment fires checkout.session.completed; every
+     renewal after it fires invoice.paid, which the webhook ignores), while the
+     page below promises nothing here auto-renews. Copy both price ids (price_…).
+  2. Stripe → Payment Links: one link per price. On each link, open Advanced →
+     Metadata and add   plan = lifetime   (or   plan = annual  ). That metadata
+     is what the webhook reads: a webhook payload does NOT carry expanded line
+     items, so the price id may not arrive, but metadata always does.
+  3. Stripe → Developers → Webhooks → Add endpoint:
+        https://flora-ai-proxy.onrender.com/stripe/webhook
+     Events: checkout.session.completed  (that one alone is enough).
+     Copy the endpoint's SIGNING SECRET (whsec_…).
+  4. Render → flora-ai-proxy → Environment → Add variable (never edit a masked
+     row):  STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_LIFETIME, STRIPE_PRICE_ANNUAL.
+  5. Paste each Payment Link URL into the two hrefs below and deploy the site
+     (bash launch/site/deploy-privacy.sh).
+
+  Then buy one yourself with a real card and refund it: the code should land in
+  the inbox within seconds, and GET /founding/status?key=… should show the row
+  with via:"stripe" and a mailedAt.
+-->
+<style>
+  :root { --ink:#17251D; --ink2:#3C4A42; --ink3:#7A867F; --green:#0A7A46; --greenDeep:#075C35; --bg:#F7FAF7; --card:#FFFFFF; --line:#E4EAE5; --gold:#B8862B; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width:720px; margin:0 auto; padding:48px 22px 80px; }
+  .brand { display:flex; align-items:center; gap:10px; margin-bottom:34px; }
+  .leaf { width:34px; height:34px; border-radius:17px; background:var(--green); display:flex; align-items:center; justify-content:center; color:#fff; font-size:17px; }
+  .brand b { font-size:19px; letter-spacing:.2px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:34px 30px; }
+  h1 { font-family:Georgia, "Times New Roman", serif; font-size:32px; line-height:1.2; margin:0 0 6px; }
+  .updated { color:var(--ink3); font-size:13.5px; margin-bottom:22px; }
+  h2 { font-size:19px; margin:30px 0 8px; }
+  p, li { color:var(--ink2); }
+  strong { color:var(--ink); }
+  .foot { text-align:center; color:var(--ink3); font-size:13px; margin-top:28px; }
+  a { color:var(--green); }
+  /* The two plans. Same card grammar as the rest of the site: white, hairline
+     border, generous radius — nothing here is a new visual idea. */
+  .plans { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0 6px; }
+  .plan { border:1px solid var(--line); border-radius:16px; padding:20px 18px; background:#FCFEFC; }
+  .plan .kind { font-size:12px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--ink3); }
+  .plan .price { font-family:Georgia, "Times New Roman", serif; font-size:29px; line-height:1.15; margin:7px 0 2px; color:var(--ink); }
+  .plan .note { font-size:13.5px; color:var(--ink3); margin:0 0 15px; }
+  .buy { display:block; text-align:center; background:var(--green); color:#fff; font-weight:700; font-size:14.5px; text-decoration:none; padding:12px 14px; border-radius:11px; }
+  .buy:hover { background:var(--greenDeep); }
+  .plan.best { border-color:var(--gold); }
+  .plan.best .kind { color:var(--gold); }
+  .steps { counter-reset:step; list-style:none; padding:0; margin:14px 0 0; }
+  .steps li { counter-increment:step; position:relative; padding-left:34px; margin-bottom:11px; }
+  .steps li::before { content:counter(step); position:absolute; left:0; top:1px; width:23px; height:23px; border-radius:12px; background:var(--green); color:#fff; font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  @media (max-width:560px) { .plans { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="leaf">🌿</div><b>Flora</b></div>
+  <div class="card">
+    <h1>Get Flora Plus</h1>
+    <div class="updated">Buy here, and we email you a code that turns Plus on in the app.</div>
+
+    <p>Flora Plus is every meal scan, your personal trigger map, the weekly and monthly gut reports, Eat Out, recipes and the grocery list. Most people subscribe inside the app. Buying here is for two groups: <strong>one-to-one coaching clients</strong>, whose program includes Flora, and anyone who would rather pay once than subscribe.</p>
+
+    <div class="plans">
+      <div class="plan best">
+        <div class="kind">Lifetime</div>
+        <div class="price">$399 <span class="note" style="font-size:14px">once</span></div>
+        <p class="note">Flora Plus for good, on the phone you redeem it on.</p>
+        <a class="buy" href="https://buy.stripe.com/3cIfZif6KeEh3ZO3Hq8AE0g">Get lifetime access</a>
+      </div>
+      <div class="plan">
+        <div class="kind">One year</div>
+        <div class="price">$159.99 <span class="note" style="font-size:14px">for 12 months</span></div>
+        <p class="note">Flora Plus for twelve months, paid once up front.</p>
+        <a class="buy" href="https://buy.stripe.com/00w7sM6Ae3ZD9k8a5O8AE0f">Get a year of access</a>
+      </div>
+    </div>
+    <p class="foot" style="text-align:left;margin-top:6px">Buying here means you accept Flora's <a href="terms.html">Terms of Service</a>. Prices in US dollars; card, Apple Pay and Google Pay at checkout.</p>
+
+    <h2>How your code works</h2>
+    <ol class="steps">
+      <!-- DELIVERY IS NOT RETRIED. The mint and the send are one synchronous pass
+           in the webhook, so seconds is the normal case — but a send failure has
+           no retry, and three paths end with the code being sent by hand (no
+           email on the session, mail not configured, SMTP throw). "A few seconds"
+           was a promise the server does not keep on its bad day; this is the one
+           it does. -->
+      <li>Pay, and your code arrives by email, usually within a minute. It looks like <strong>FL-K7M2P9</strong>. If it has not landed in ten minutes, check spam, then email me.</li>
+      <li>Open Flora, tap <strong>“Have an access code?”</strong> at the bottom of the screen, and type it in.</li>
+      <!-- NOT "works on a fresh install". The install id lives in AsyncStorage,
+           which iOS deletes with the app. Once a code has been redeemed its row
+           holds that id, so a reinstalled app sends a NEW one and the server
+           answers 409 claimed — the app shows "already used elsewhere". The code
+           email's line means the FIRST redemption on a newly downloaded app,
+           which is true; sitting next to "one code, one phone" it read as
+           "reinstall freely", which is the opposite of true. The reinstall and
+           reset cases are handled in The details below, by hand, like a new phone. -->
+      <li>Plus turns on straight away. One code, one phone — so redeem it on the phone you actually use.</li>
+    </ol>
+
+    <h2>The details</h2>
+    <!-- Honest about the mechanism, because the mechanism is real: the
+         entitlement is granted to THIS install, so a new phone needs the code
+         moved by hand (the owner's /founding/grant {code, install} path). A
+         Flora account moves the DATA, which is a different thing, and saying
+         otherwise here would be a promise the server cannot keep. -->
+    <p>A code unlocks one phone. If you get a new phone, delete and reinstall Flora, or reset the app, email me with the code and I will move it across. Signing in to a Flora account is what carries your meals, scores and trigger map to a new phone; it does not carry the code, so do both. Nothing here auto-renews and there is nothing to cancel: a lifetime code never expires, and a one-year code simply ends, after which Flora keeps working with the free features and every meal you logged stays on your phone.</p>
+    <!-- The double-subscription warning leads its own paragraph now. It used to
+         sit third in a line that opened "Questions about a purchase?", below the
+         buttons — and it is the one sentence that stops somebody paying twice. -->
+    <p><strong>Already subscribing in the app?</strong> Buying here is separate from an App Store subscription and does not cancel it. Cancel that first in your iPhone's Settings (your name → Subscriptions), or you will be paying twice.</p>
+    <p>Questions about a purchase? Email me within 14 days of buying and I will refund it, no questions. Anything else, email me and I will sort it out.</p>
+    <p>Trouble with a code? Email <a href="mailto:cw23business@gmail.com?subject=Flora%20access%20code">cw23business@gmail.com</a> and include the address you paid with.</p>
+  </div>
+  <div class="foot">Flora · <a href="index.html">Home</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></div>
+</div>
+</body>
+</html>
